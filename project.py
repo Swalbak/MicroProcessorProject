@@ -4,18 +4,23 @@ from picamera import PiCamera
 from picamera.array import PiRGBArray
 
 # 사용자들의 사진을 불러옵니다.
-user_images = ["용빈.jpg", "지준.jpg"]
-user_names = ["User 1", "User 2"]
+user_images_select = ["용빈.jpg", "지준.jpg", "jh1.jpg", "jh2.jpg"]
+user_names_select = ["yongb 1", "jj 2", "jh", "jh"]
+user_names = []
 
 # 사용자들의 얼굴 인코딩을 저장할 리스트를 만듭니다.
 known_face_encodings = []
 
 # 각 사용자의 사진에서 얼굴 인코딩을 추출합니다.
-for user_image in user_images:
+for i in range(len(user_images_select)):
+    user_image = user_images_select[i]
     image = face_recognition.load_image_file(user_image)
     face_encoding = face_recognition.face_encodings(image)
     if face_encoding:
         known_face_encodings.append(face_encoding[0])
+        user_names.append(user_names_select[i])
+    else:
+        print(f"{user_images_select[i]} not encoded!!")
 
 # PiCamera를 이용해 실시간으로 얼굴 인식을 진행합니다.
 camera = PiCamera()
