@@ -1,4 +1,3 @@
-import cv2
 import face_recognition
 import numpy as np
 from picamera import PiCamera
@@ -14,13 +13,15 @@ known_face_encodings = []
 # 각 사용자의 사진에서 얼굴 인코딩을 추출합니다.
 for user_image in user_images:
     image = face_recognition.load_image_file(user_image)
-    face_encoding = face_recognition.face_encodings(image)[0]
-    known_face_encodings.append(face_encoding)
+    face_encoding = face_recognition.face_encodings(image)
+    if face_encoding:
+        known_face_encodings.append(face_encoding[0])
 
 # PiCamera를 이용해 실시간으로 얼굴 인식을 진행합니다.
 camera = PiCamera()
 camera.resolution = (640, 480)
 rawCapture = PiRGBArray(camera, size=(640, 480))
+camera.start_preview()
 
 for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
     image = frame.array
@@ -44,5 +45,4 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
     rawCapture.truncate(0)
 
     # 'q' 키를 누르면 루프에서 빠져나옵니다.
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+    
