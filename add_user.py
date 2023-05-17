@@ -4,6 +4,8 @@ import os
 import picamera
 import pickle
 
+# pickle 모듈 설치하기
+
 '''
 add_user.py
 * 신규 유저 추가 모듈(인코딩 포함)
@@ -19,8 +21,12 @@ CAPTURE_COUNT = 10
 username = input("Type your name: ")
 
 # load user name list
-with open('user_names.pickle', 'rb') as f:
-	user_names = pickle.load(f)
+try:
+    with open('user_names.pickle', 'rb') as f:
+        user_names = pickle.load(f)
+# if the file does not exist, initialize it as an empty list
+except FileNotFoundError:
+    user_names = [] 
 
 if not os.path.isdir(f'./{username}'):
 	os.mkdir(f"./{username}")
