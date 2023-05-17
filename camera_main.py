@@ -34,12 +34,16 @@ known_face_encodings = []
 with open('user_names.pickle', 'rb') as f:
     user_names_select = pickle.load(f)
 
+print("user", user_names_select)
+
 # make encoding list
 for user in user_names_select:
     with open(f'./{user}/known_face_encodings.pickle', 'rb') as f:
         encoding = pickle.load(f)
-    known_face_encodings += encoding
-    user_names = user * len(encoding)
+    known_face_encodings.extend(encoding)
+    user_names.extend([user] * len(encoding))
+
+print("user_names", user_names)
 
 camera = PiCamera()
 camera.resolution = (640, 480)
