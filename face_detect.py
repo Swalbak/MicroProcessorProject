@@ -10,6 +10,7 @@ camera_main.py
 '''
 
 def face_detect():
+    COUNT_NUM = 5
     before_name = 'unknown'
     count = 0
 
@@ -63,7 +64,7 @@ def face_detect():
                 before_name = name
                 count = 0
 
-            if count == 3:
+            if count == 5:
                 return name
         
         rawCapture.truncate(0)

@@ -19,7 +19,7 @@ user_names: 기존 유저들 이름 목록
 '''
 
 def add_user():
-	CAPTURE_COUNT = 10
+	CAPTURE_COUNT = 20
 	text_to_speech("이름을 말씀해주세요.")
 	# STT
 	username = input("Type your name: ")
@@ -36,17 +36,20 @@ def add_user():
 		while True:
 			encoding_count = 0
 			os.mkdir(f"./{username}")
+			# Captured image name list
 			user_images_select = []
+			# encoding list
 			known_face_encodings = []
 			
 			with picamera.PiCamera() as camera:
 				camera.resolution = (640, 480)
 				camera.start_preview()
-				print("Capture start!!")
+				print('Capture start!!')
+				text_to_speech("10초간 촬영을 시작합니다. 움직이지 마세요.")
 
 				for i in range(CAPTURE_COUNT):
 					# capture image(save)
-					time.sleep(1)
+					time.sleep(0.5)
 					camera.capture(f'./{username}/{username}{i}.jpg')
 					user_images_select.append(f"{username}{i}.jpg")
 				
@@ -58,13 +61,14 @@ def add_user():
 				image = face_recognition.load_image_file(f"./{username}/{user_image}")
 				face_encoding = face_recognition.face_encodings(image)
 
+				# 하나의 얼굴 요소만 반영
 				if face_encoding:
 					known_face_encodings.append(face_encoding[0])
 					encoding_count += 1
 				else:
 					print(f"{user_images_select[i]} not encoded!!")
 
-			if encoding_count < 6:
+			if encoding_count < 10:
 				shutil.rmtree(f'./{username}')
 				text_to_speech("다시 등록을 시작합니다. 움직이지 마세요.")
 			else:
