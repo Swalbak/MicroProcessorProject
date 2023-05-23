@@ -64,7 +64,7 @@ def face_detect():
                 before_name = name
                 count = 0
 
-            if count == 5:
+            if count == COUNT_NUM:
                 return name
         
         rawCapture.truncate(0)
