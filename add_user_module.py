@@ -19,7 +19,7 @@ user_names: 기존 유저들 이름 목록
 '''
 
 def add_user():
-	CAPTURE_COUNT = 20
+	CAPTURE_COUNT = 10
 	text_to_speech("이름을 말씀해주세요.")
 	# STT
 	username = input("Type your name: ")
@@ -68,7 +68,7 @@ def add_user():
 				else:
 					print(f"{user_images_select[i]} not encoded!!")
 
-			if encoding_count < 10:
+			if encoding_count < 5:
 				shutil.rmtree(f'./{username}')
 				text_to_speech("다시 등록을 시작합니다. 움직이지 마세요.")
 			else:

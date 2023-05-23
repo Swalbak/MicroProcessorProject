@@ -20,7 +20,7 @@ while True:
     if detection and (dist < 50):
         text_to_speech('안녕하세요! 얼굴인식 진행하겠습니다.')
         name = face_detect()
-        if name == 'unknown':
+        if name == 'Unknown':
             text_to_speech("등록되지 않는 얼굴입니다. 새로 등록 시작하겠습니다.")
             name = add_user()
 

@@ -10,8 +10,8 @@ camera_main.py
 '''
 
 def face_detect():
-    COUNT_NUM = 5
-    before_name = 'unknown'
+    COUNT_NUM = 10
+    before_name = 'Unknown'
     count = 0
 
     # 사용자들의 사진을 불러옵니다.
@@ -52,19 +52,33 @@ def face_detect():
             # 인식된 얼굴이 알려진 사용자들의 얼굴과 얼마나 유사한지 확인합니다.
             matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
             name = "Unknown"
-
+            
+            #test
+            print(matches)
+            
+            tf_name = np.array(user_names)[matches]
+            most_counted_name = np.argmax(tf_name)
+            max_count = tf_name[tf_name == most_counted_name].sum()
+                        
+            if max_count < 5:
+                name = 'Unknown'
+            else:
+                name = most_counted_name
+                
             # 사용자가 일치하는 경우, 해당 사용자의 이름을 출력합니다.
-            if True in matches:
-                first_match_index = matches.index(True)
-                name = user_names[first_match_index]
-
+            #if True in matches:
+            #    first_match_index = matches.index(True)
+            #    name = user_names[first_match_index]
+            
+            print(name)
+            
             if name == before_name:
                 count += 1                
             else:
                 before_name = name
                 count = 0
 
-            if count == 5:
+            if count == COUNT_NUM:
                 return name
         
         rawCapture.truncate(0)
