@@ -86,8 +86,10 @@ def add_user():
 			pickle.dump(user_names, f)
 			
 		text_to_speech(f"{username}님의 등록이 완료되었습니다.")
+		rawCapture.truncate(0)
 		return username
 
 	else:
 		text_to_speech("이미 존재하는 유저입니다.")
+		rawCapture.truncate(0)
 		return username

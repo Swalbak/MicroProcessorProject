@@ -11,7 +11,7 @@ camera_main.py
 '''
 
 def face_detect():
-    COUNT_NUM = 10
+    COUNT_NUM = 5
     before_name = 'Unknown'
     count = 0
 
@@ -51,7 +51,7 @@ def face_detect():
 
         for face_encoding in face_encodings:
             # 인식된 얼굴이 알려진 사용자들의 얼굴과 얼마나 유사한지 확인합니다.
-            matches = face_recognition.compare_faces(known_face_encodings, face_encoding, 0.3)
+            matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
             name = "Unknown"
             
             #test
@@ -81,6 +81,7 @@ def face_detect():
                 count = 0
 
             if count == COUNT_NUM:
+                rawCapture.truncate(0)
                 return name
         
         rawCapture.truncate(0)
