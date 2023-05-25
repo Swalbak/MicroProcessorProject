@@ -3,6 +3,7 @@ import numpy as np
 from picamera import PiCamera
 from picamera.array import PiRGBArray
 import pickle
+from collections import Counter
 
 '''
 camera_main.py
@@ -57,9 +58,9 @@ def face_detect():
             print(matches)
             
             tf_name = np.array(user_names)[matches]
-            most_counted_name = np.argmax(tf_name)
-            max_count = tf_name[tf_name == most_counted_name].sum()
-                        
+            counter = Counter(tf_name)
+            most_counted_name, max_count = counter.most_common(1)[0]
+            
             if max_count < 5:
                 name = 'Unknown'
             else:
