@@ -54,7 +54,8 @@ def add_user():
 					user_images_select.append(f"{username}{i}.jpg")
 				
 				print("Capture complete!!")
-
+				camera.stop_preview()
+				
 			# make encoding list
 			for i in range(CAPTURE_COUNT):
 				user_image = user_images_select[i]

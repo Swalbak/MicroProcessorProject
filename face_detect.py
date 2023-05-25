@@ -82,6 +82,8 @@ def face_detect():
 
             if count == COUNT_NUM:
                 rawCapture.truncate(0)
+                camera.stop_preview()
+                camera.close()
                 return name
         
         rawCapture.truncate(0)
