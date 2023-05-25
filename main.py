@@ -25,21 +25,24 @@ while True:
             name = add_user()
 
         text_to_speech(f'안녕하세요, {name}님! 무엇을 도와드릴까요?')
-        messages = [{"role": "system", "content": f"안녕하세요, {name}님! 무엇을 도와드릴까요?"}]
+        
+        messages = []
+        if os.path.isfile(f'./{name}/messages.pickle'):
+            with open(f'./{name}/messages.pickle', 'rb') as f:
+                messages = pickle.load(f)
+        else:
+            messages = [{"role": "system", "content": f"안녕하세요, {name}님! 무엇을 도와드릴까요?"}]
+        
         while True:
             if dist > 50:
                 text_to_speech("안녕히 가세요플레.")
+                with open(f'./{name}/messages.pickle', 'wb') as f:
+                    pickle.dump(messages, f)
                 break
+                
             # stt로 변경
-            stt = input("type your q")
-            if os.path.isfile(f'./{name}/messages.pickle'):
-                with open(f'./{name}/messages.pickle', 'rb') as f:
-                    messages = pickle.load(f)
+            stt = input("type your q: ")
             
             messages.append({"role": "user", "content": stt})
             messages, response = gpt_response(messages)
             text_to_speech(response)
-
-
-
-
