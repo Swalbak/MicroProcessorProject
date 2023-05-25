@@ -58,13 +58,14 @@ def face_detect():
             print(matches)
             
             tf_name = np.array(user_names)[matches]
-            counter = Counter(tf_name)
-            most_counted_name, max_count = counter.most_common(1)[0]
+            if len(tf_name) != 0:
+                counter = Counter(tf_name)
+                most_counted_name, max_count = counter.most_common(1)[0]
             
-            if max_count < 5:
-                name = 'Unknown'
-            else:
-                name = most_counted_name
+                if max_count < 8:
+                    name = 'Unknown'
+                else:
+                    name = most_counted_name
                 
             # 사용자가 일치하는 경우, 해당 사용자의 이름을 출력합니다.
             #if True in matches:

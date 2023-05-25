@@ -68,7 +68,7 @@ def add_user():
 				else:
 					print(f"{user_images_select[i]} not encoded!!")
 
-			if encoding_count < 5:
+			if encoding_count != 10:
 				shutil.rmtree(f'./{username}')
 				text_to_speech("다시 등록을 시작합니다. 움직이지 마세요.")
 			else:
