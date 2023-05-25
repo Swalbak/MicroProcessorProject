@@ -51,7 +51,7 @@ def face_detect():
 
         for face_encoding in face_encodings:
             # 인식된 얼굴이 알려진 사용자들의 얼굴과 얼마나 유사한지 확인합니다.
-            matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
+            matches = face_recognition.compare_faces(known_face_encodings, face_encoding, 0.3)
             name = "Unknown"
             
             #test
