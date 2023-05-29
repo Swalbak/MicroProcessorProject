@@ -86,6 +86,6 @@ def face_detect():
                 camera.close()
                 return name
         
-        rawCapture.truncate(0)
+        # rawCapture.truncate(0)
 
         

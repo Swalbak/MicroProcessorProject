@@ -4,6 +4,7 @@ import os
 import picamera
 import pickle
 from tts_module import text_to_speech
+from stt_module import speech_to_text
 import shutil
 
 # pickle 모듈 설치하기
@@ -22,7 +23,7 @@ def add_user():
 	CAPTURE_COUNT = 10
 	text_to_speech("이름을 말씀해주세요.")
 	# STT
-	username = input("Type your name: ")
+	username = speech_to_text()
 
 	# load user name list
 	try:
