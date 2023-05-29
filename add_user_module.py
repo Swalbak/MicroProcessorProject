@@ -55,8 +55,12 @@ def add_user():
 				
 				camera.stop_preview()
 				print("Capture complete!!")
+<<<<<<< Updated upstream
 				camera.stop_preview()
 				
+=======
+			
+>>>>>>> Stashed changes
 			# make encoding list
 			for i in range(CAPTURE_COUNT):
 				user_image = user_images_select[i]
