@@ -11,13 +11,13 @@ GPIO.setup(PIR_PIN, GPIO.IN)
 GPIO.setup(TRIG_PIN, GPIO.OUT)
 GPIO.setup(ECHO_PIN, GPIO.IN)
 
-def read_pir_sensor(queue):
+def read_pir_sensor():
     pir_value = GPIO.input(PIR_PIN)
     time.sleep(1)
 
     return pir_value
 
-def read_ultrasonic_sensor(queue):
+def read_ultrasonic_sensor():
     GPIO.output(TRIG_PIN, False)
     time.sleep(0.01)
 
@@ -35,6 +35,6 @@ def read_ultrasonic_sensor(queue):
     distance = pulse_duration * 17150
     distance = round(distance, 2)
 
-    time.sleep(1)
+    time.sleep(0.3)
 
     return distance

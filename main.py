@@ -21,8 +21,8 @@ while True:
     pir_value = read_pir_sensor()
     ultrasonic_dist = read_ultrasonic_sensor()
 
-    if pir_value and (ultrasonic_dist < 100):
-        text_to_speech('안녕하세요! 얼굴인식 진행하겠습니다.')
+    if pir_value and (ultrasonic_dist < 80):
+        text_to_speech('안안녕하세요! 얼굴인식 진행하겠습니다.')
         name = face_detect()
 
         if name == 'Unknown':
@@ -42,12 +42,13 @@ while True:
             # 사용자 거리 측정
             ultrasonic_dist = read_ultrasonic_sensor()
 
-            if ultrasonic_dist > 50:
+            if ultrasonic_dist > 80:
                 text_to_speech("안녕히 가세요플레.")
                 with open(f'./{name}/messages.pickle', 'wb') as f:
                     pickle.dump(messages, f)
                 break
-                
+            
+            text_to_speech('질문을 말씀해주세요')
             # stt로 변경
             req = speech_to_text()
             

@@ -1,3 +1,7 @@
-import numpy as np
+import pickle
 
-np.array([1, 2, 3])
+with open('./user_names.pickle', 'rb') as f:
+	us = pickle.load(f)
+
+print(us)
+print(us)
