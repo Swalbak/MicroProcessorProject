@@ -2,9 +2,9 @@ import RPi.GPIO as GPIO
 import time
 
 # PIR 센서와 초음파 센서를 위한 핀 설정
-PIR_PIN = 4 # 수정 필요
-TRIG_PIN = 17 # 수정 필요
-ECHO_PIN = 27 # 수정 필요
+PIR_PIN = 18 # 수정 필요
+TRIG_PIN = 20 # 수정 필요
+ECHO_PIN = 21 # 수정 필요
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(PIR_PIN, GPIO.IN)
@@ -14,7 +14,7 @@ GPIO.setup(ECHO_PIN, GPIO.IN)
 def read_pir_sensor(queue):
     pir_value = GPIO.input(PIR_PIN)
     time.sleep(1)
-    
+
     return pir_value
 
 def read_ultrasonic_sensor(queue):
