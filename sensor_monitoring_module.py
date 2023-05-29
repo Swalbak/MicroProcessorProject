@@ -13,8 +13,9 @@ GPIO.setup(ECHO_PIN, GPIO.IN)
 
 def read_pir_sensor(queue):
     pir_value = GPIO.input(PIR_PIN)
-    queue.put(pir_value)
     time.sleep(1)
+    
+    return pir_value
 
 def read_ultrasonic_sensor(queue):
     GPIO.output(TRIG_PIN, False)
@@ -34,5 +35,6 @@ def read_ultrasonic_sensor(queue):
     distance = pulse_duration * 17150
     distance = round(distance, 2)
 
-    queue.put(distance)
     time.sleep(1)
+
+    return distance
