@@ -15,7 +15,7 @@ def gpt_response(messages):
     response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo-0301",
     messages=messages,
-    max_tokens=60
+    max_tokens=100
     )
 
     messages.append(response['choices'][0]['message'])
